@@ -1,6 +1,11 @@
 package pm.gui;
 
 import java.io.IOException;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import pm.file.FileManager;
 import saf.ui.AppGUI;
 import saf.AppTemplate;
 import saf.components.AppWorkspaceComponent;
@@ -33,10 +38,29 @@ public class Workspace extends AppWorkspaceComponent {
     public Workspace(AppTemplate initApp) throws IOException {
 	// KEEP THIS FOR LATER
 	app = initApp;
-
 	// KEEP THE GUI FOR LATER
 	gui = app.getGUI();
+        
+        workspace= new Pane();
+        workspace.getStyleClass().add("max_pane");
+        
+        System.out.println(workspace.getHeight());
+        
+        startUpWorkspace startApp= new startUpWorkspace(workspace,app);
     }
+    
+    public void mainMenuStartUp(){
+    workspace.getChildren().clear();
+    MainMenuWorkspace mainMenu = new MainMenuWorkspace(workspace,app);
+    }
+    public void initMainInterface(){
+        workspace.getChildren().clear();
+      MainInterface primaryInterface = new MainInterface(app,workspace); 
+    }
+    
+    
+    
+    
     
     /**
      * This function specifies the CSS style classes for all the UI components
@@ -46,6 +70,8 @@ public class Workspace extends AppWorkspaceComponent {
      */
     @Override
     public void initStyle() {
+        
+        workspace.getStyleClass().add("max_pane");
 	// NOTE THAT EACH CLASS SHOULD CORRESPOND TO
 	// A STYLE CLASS SPECIFIED IN THIS APPLICATION'S
 	// CSS FILE

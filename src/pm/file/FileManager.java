@@ -18,6 +18,8 @@ import saf.components.AppFileComponent;
  * @version 1.0
  */
 public class FileManager implements AppFileComponent {
+    
+    private String leagueFilePath;
 
     /**
      * This method is for saving user work, which in the case of this
@@ -91,5 +93,19 @@ public class FileManager implements AppFileComponent {
 	// NOTE THAT THE Web Page Maker APPLICATION MAKES
 	// NO USE OF THIS METHOD SINCE IT NEVER IMPORTS
 	// EXPORTED WEB PAGES
+    }
+
+    /**
+     * @return the leagueFilePath
+     */
+    public String getLeagueFilePath() {
+        return leagueFilePath;
+    }
+
+    /**
+     * @param leagueFilePath the leagueFilePath to set
+     */
+    public void setLeagueFilePath(String leagueFilePath) {
+        this.leagueFilePath = leagueFilePath;
     }
 }

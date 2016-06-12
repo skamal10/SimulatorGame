@@ -40,12 +40,12 @@
 .max_pane {
     -fx-fit-to-height: true;
     -fx-fit-to-width: true;
-    -fx-background-color:#ccccff;
+    -fx-background-color:#D0CABF;
 }
 
 // CSS CLASS FOR OUR BIG PANES
 .bordered_pane {
-    -fx-background-color: #aaaaff;
+    -fx-background-color: #D0CABF;
     -fx-background-radius: 5.0;
     -fx-padding: 15;
     -fx-spacing: 10;
@@ -78,4 +78,17 @@
 
 .render_canvas {
     -fx-background-color:#ffef84;
+}
+.start_up{   
+    -fx-fit-to-height: true;
+    -fx-fit-to-width: true;
+    -fx-background-color:#ccccff;
+}
+.vbox_style{
+    -fx-fit-to-width: true;
+    -fx-background-color:#B9B1A8;
+}
+.sidebar{
+    -fx-fit-to-height: true;
+    -fx-background-color:#4B4D52;
 }
