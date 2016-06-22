@@ -11,6 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -51,6 +52,7 @@ public class RosterView {
         teams= data.getTeamsArray();
         
         rosterPane= new VBox();
+       
         
         teamPicker = new ComboBox(teams);
          teamPicker.valueProperty().addListener(new ChangeListener<Team>() {
@@ -100,10 +102,10 @@ public class RosterView {
         new PropertyValueFactory<>("Age"));
 
           
-        TableColumn<Player,Integer> playerHeight= new TableColumn("Height");
+        TableColumn<Player,String> playerHeight= new TableColumn("Height");
         playerHeight.setSortable(true);
         playerHeight.setCellValueFactory(
-        new PropertyValueFactory<>("Height"));
+        new PropertyValueFactory<>("RealHeight"));
 
         
         TableColumn<Player,Integer> playerWeight= new TableColumn("Weight");
@@ -115,10 +117,43 @@ public class RosterView {
         playerExp.setSortable(true);
         playerExp.setCellValueFactory(
         new PropertyValueFactory<>("Exp"));
-      
-          
-          
-          rosterTable.getColumns().addAll(playerName,playerPos,playerAge,playerHeight,playerWeight,playerExp);
+        
+        TableColumn<Player,Integer> playerInRating= new TableColumn("Inside");
+        playerInRating.setSortable(true);
+        playerInRating.setCellValueFactory(
+        new PropertyValueFactory<>("InsideGrade"));
+        
+        TableColumn<Player,Integer> playerMidRating= new TableColumn("Mid");
+        playerMidRating.setSortable(true);
+        playerMidRating.setCellValueFactory(
+        new PropertyValueFactory<>("MidGrade"));
+        
+        TableColumn<Player,Integer> playerThreeRating= new TableColumn("Three");
+        playerThreeRating.setSortable(true);
+        playerThreeRating.setCellValueFactory(
+        new PropertyValueFactory<>("ThreePointGrade"));
+        
+        TableColumn<Player,Integer> playerHandleRating= new TableColumn("Handle");
+        playerHandleRating.setSortable(true);
+        playerHandleRating.setCellValueFactory(
+        new PropertyValueFactory<>("HandleGrade"));
+        
+        TableColumn<Player,Integer> playerPostRating= new TableColumn("Post D");
+        playerPostRating.setSortable(true);
+        playerPostRating.setCellValueFactory(
+        new PropertyValueFactory<>("PostDefenseGrade"));
+        
+        TableColumn<Player,Integer> playerPerimeterRating= new TableColumn("Per D");
+        playerPerimeterRating.setSortable(true);
+        playerPerimeterRating.setCellValueFactory(
+        new PropertyValueFactory<>("PerimeterDefenseGrade"));
+        
+        TableColumn<Player,Integer> playerReboundRating= new TableColumn("Rebounding");
+        playerReboundRating.setSortable(true);
+        playerReboundRating.setCellValueFactory(
+        new PropertyValueFactory<>("ReboundingGrade"));
+
+    rosterTable.getColumns().addAll(playerName,playerPos,playerAge,playerHeight,playerWeight,playerExp,playerInRating,playerMidRating,playerThreeRating,playerHandleRating,playerPostRating,playerPerimeterRating,playerReboundRating);
     }
     
     public void initStyles(){
@@ -126,6 +161,7 @@ public class RosterView {
         rosterPane.prefWidthProperty().bind(workPane.widthProperty());
         rosterPane.getStyleClass().add("test");
         rosterPane.setSpacing(20);
+        rosterPane.setAlignment(Pos.CENTER);
        
     }
     
