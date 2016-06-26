@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import pm.data.DataManager;
+import pm.data.Team;
 import pm.file.FileManager;
 import saf.ui.AppGUI;
 import saf.AppTemplate;
@@ -25,7 +27,11 @@ public class Workspace extends AppWorkspaceComponent {
 
     // IT KNOWS THE GUI IT IS PLACED INSIDE
     AppGUI gui;
-
+    private Pane mainPane; // THIS IS THE CENTER PANE WHERE INFO WILL BE DISPLAYED
+    private StartUpWorkspace startApp;
+    private MainMenuWorkspace mainMenu;
+    private RosterView rosterPage;
+    private MainInterface primaryInterface;
     /**
      * Constructor for initializing the workspace, note that this constructor
      * will fully setup the workspace user interface for use.
@@ -40,23 +46,41 @@ public class Workspace extends AppWorkspaceComponent {
 	app = initApp;
 	// KEEP THE GUI FOR LATER
 	gui = app.getGUI();
-        
         workspace= new Pane();
         workspace.getStyleClass().add("max_pane");
         
-        System.out.println(workspace.getHeight());
+        // LETS INIT ALL THE SCREENS
+        startApp= new StartUpWorkspace(workspace,app); // INIT THE START MENU
+        this.setScreen(startApp);
         
-        startUpWorkspace startApp= new startUpWorkspace(workspace,app);
+        mainMenu = new MainMenuWorkspace(workspace,app);
+        
+        primaryInterface = new MainInterface(app,workspace); 
+        mainPane=primaryInterface.workPane;
+        rosterPage= new RosterView(app, mainPane);
+
     }
     
-    public void mainMenuStartUp(){
-    workspace.getChildren().clear();
-    MainMenuWorkspace mainMenu = new MainMenuWorkspace(workspace,app);
+    public void initMainInterface() throws IOException{
+      DataManager data = (DataManager)app.getDataComponent();
+      FileManager fileManager= (FileManager)app.getFileComponent();
+ 
+      workspace.getChildren().clear();
+      fileManager.loadTeams(data);
+      fileManager.loadPlayers(data);
     }
-    public void initMainInterface(){
+
+    
+    public void setScreen(Screen screen){
         workspace.getChildren().clear();
-      MainInterface primaryInterface = new MainInterface(app,workspace); 
+        screen.show();
     }
+    
+    public void setPage(Page page){
+        mainPane.getChildren().clear();
+        page.showPage();
+    }
+    
     
     
     
@@ -84,5 +108,40 @@ public class Workspace extends AppWorkspaceComponent {
     @Override
     public void reloadWorkspace() {
 
+    }
+
+    /**
+     * @return the mainPane
+     */
+    public Pane getMainPane() {
+        return mainPane;
+    }
+
+    /**
+     * @return the startApp
+     */
+    public StartUpWorkspace getStartApp() {
+        return startApp;
+    }
+
+    /**
+     * @return the mainMenu
+     */
+    public MainMenuWorkspace getMainMenu() {
+        return mainMenu;
+    }
+
+    /**
+     * @return the rosterPage
+     */
+    public RosterView getRosterPage() {
+        return rosterPage;
+    }
+
+    /**
+     * @return the primaryInterface
+     */
+    public MainInterface getPrimaryInterface() {
+        return primaryInterface;
     }
 }
