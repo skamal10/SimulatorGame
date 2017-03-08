@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Player Info popup singleton in order to display player contracts, stats, history
  */
 package pm.gui;
 

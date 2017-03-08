@@ -51,6 +51,7 @@ public class MainMenuWorkspace {
     Button cancelButton;
     HBox fileChooserPane;
     
+    // Start up menu
     public MainMenuWorkspace(Pane initWorkspace,AppTemplate initApp){
         
         app=initApp;
@@ -106,6 +107,9 @@ public class MainMenuWorkspace {
         headerPane.getStyleClass().add("vbox_style");
         headerPane.setAlignment(Pos.CENTER);
     }
+
+
+    // Initiliaze all of the Main Menu handlers
     public void initHandlers(){
         okButton.setOnAction(e->{
             DataManager data =(DataManager) app.getDataComponent();

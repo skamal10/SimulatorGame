@@ -48,6 +48,10 @@ public class LetterGrade {
         return grades;
     }
 
+    /**
+ * Calculate the letter grades for each category based on the raw attributes
+ *
+ */
     public void calculateRatings(){
         
        int insideRaw= limitRating(p.getInsideScoring());
@@ -87,6 +91,14 @@ public class LetterGrade {
        
     }
     
+
+    /**
+ * Given the stDeviation of a given category, compute the letter grade for each raw rating.
+ *
+ * @param  rating raw attribute number
+ * @param  avg    League-wide avg of the given attribute
+ * @return      Letter Grade given the attribute
+ */
     private String calculateGrade(int rating, double avg,double stDev){
         String grade;
         

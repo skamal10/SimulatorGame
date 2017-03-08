@@ -82,7 +82,7 @@ public class TrainingCampPage extends Page{
         
 
     }
-    
+    // Create the image and put it in a stack pane
     private StackPane initImage(String name ,String imagePath){
         StackPane stack = new StackPane();
         Image image = new Image(imagePath);
